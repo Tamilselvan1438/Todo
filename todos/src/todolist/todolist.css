@@ -1,0 +1,39 @@
+.colour {
+  width: 350px;
+  background-color: #ffffff;
+  padding: 2px 100px;
+  margin-left: 350px;
+  margin-right: 350px;
+  margin-top: 250px;
+}
+/* body{
+    background-color: #0099ff;
+} */
+.tamil {
+  background-color: #0099ff;
+  cursor: pointer;
+}
+.h1 {
+  text-align: center;
+}
+
+.h3 {
+  width: 200px;
+  padding: 2px 100px;
+  margin-left: 150px;
+  display: flex;
+  justify-content: space-between;
+  /* padding: 2px 50px; */
+}
+.classname {
+  color: rgb(2, 2, 2);
+  cursor: pointer;
+}
+.h5{
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 100px;
+  margin-left: 350px;
+  margin-right: 350px;
+}
