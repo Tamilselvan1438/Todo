@@ -8,7 +8,7 @@
 // interface DetailsType {
 //   inputValue: Todo[];
 //   selected: string[];
-//   showAll: () => void;
+//   showall: () => void;
 //   showActive: () => void;
 //   showCompleted: () => void;
 //   deleteSelected: () => void;
@@ -17,7 +17,7 @@
 // function Details({
 //   inputValue,
 //   selected,
-//   showAll,
+//   showall,
 //   showActive,
 //   showCompleted,
 //   deleteSelected,zzz
@@ -26,7 +26,7 @@
 //     <div className="h5">
 //       <button>{inputValue.length - selected.length} items left!</button>
 //       <span> </span>
-//       <button onClick={showAll}>All</button>
+//       <button onClick={showall}>all</button>
 //       <button onClick={showActive}>Active</button>
 //       <button onClick={showCompleted}>Complite</button>
 //       <span> </span>
@@ -38,40 +38,25 @@
 // }
 
 // export default Details;
+import { useTodoContext } from "../Todolist";
+import _ from "lodash";
 
-import "/home/intern/dev-practice/todo/src/todolist/todolist.css";
+const Details = () => {
+  const { inputValus, SET_SELECTED, setFilter } = useTodoContext();
 
-interface Todo {
-  text: string;
-  completed: boolean;
-}
-
-interface DetailsType {
-  inputValue: Todo[];
-  selected: Todo[];
-  setFilter: (value: "all" | "active" | "completed") => void;
-  deleteSelected: () => void;
-}
-
-function Details({
-  inputValue,
-  selected,
-  deleteSelected,
-  setFilter
-}: DetailsType) {
   return (
-    <div className="h5">
-      <button>{inputValue.length - selected.length} items left!</button>
-      <span> </span>
-      <button onClick={() => setFilter('all')} >All</button>
-      <button onClick={() => setFilter('active')}>Active</button>
-      <button onClick={() => setFilter('completed') }>Complite</button>
-      <span> </span>
-      <button onClick={deleteSelected} className="tamil">
-        Clear completed
-      </button>
+    <div className="fotter">
+      <span>
+        {_.filter(inputValus, (item) => !item.completed).length} item left!
+      </span>
+      <span>
+        <button onClick={() => setFilter("All")}>all</button>
+        <button onClick={() => setFilter("Active")}>Active</button>
+        <button onClick={() => setFilter("Complete")}>Completed</button>
+      </span>
+      <button onClick={SET_SELECTED}>Clear completed</button>
     </div>
   );
-}
+};
 
 export default Details;

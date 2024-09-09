@@ -109,55 +109,29 @@
 // export default InputValue;
 
 
-import "/home/intern/dev-practice/todo/src/todolist/todolist.css";
+import _ from "lodash";
+import { useTodoContext } from "../Todolist";
 
-interface Todo {
-  text: string;
-  completed: boolean;
-}
 
-interface InputValueType {
-  value: string;
-  inputValue: Todo[];
-  selected: Todo[];
-  selectedItem: (name: string) => void;
-  removeItem: (element: string) => void;
-}
 
-function InputValue({
-  value,
-  inputValue,
-  selected,
-  selectedItem,
-  removeItem,
-}: InputValueType) {
+const InputValue = () => {
+  const {selected, SetTodoChange, SetDelete } = useTodoContext()
+
   return (
-    <div className="h3">
-      <div>
-       {inputValue.length !==0 && <ul>
-          {inputValue.map((item, i) => (
-            <div key={i} className="h3">
-              <input
-                type="checkbox"
-                checked={selected.includes(item)}
-                onChange={() => selectedItem(item.text)}
-              />
-              {item.text}{" "}
-              <button
-                className="tamil"
-                key={i}
-                value={value}
-                onClick={() => removeItem(item.text)}
-              >
-                x
-              </button>
-              <hr />
-            </div>
-          ))}
-        </ul>}
-      </div>
+    <div>
+      {_.map(selected, (item, i) => (
+        <div key={i}>
+          <input
+            type="checkbox"
+            checked={item.completed}
+            onChange={() => SetTodoChange(item)}
+          />
+          <span>{item.data}</span>
+          <button onClick={() => SetDelete(item)}>X</button>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default InputValue;
